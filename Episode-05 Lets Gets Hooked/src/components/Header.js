@@ -1,6 +1,7 @@
 // Actually like the component name
 
 import { LOGO_URL } from "../utils/constant";
+
 const Header =()=>{
   return (
     <div className="header">

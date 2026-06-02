@@ -22,3 +22,8 @@ const Body =() =>{
 };
 
 export default Body;
+
+
+
+
+import RestaurantCard from "./RestaurantCard";

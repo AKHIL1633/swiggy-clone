@@ -1,3 +1,23 @@
+// We are going to build Food ordering app
+//if you are planning is good ,code is easy to write 
+//you should exactly know ,what you are going to build
+
+// lets do the planning for the Ui 
+
+// pen and paper 
+
+// in the planning phase , how our app will look right
+
+
+
+//Header  then we have logo  over there build some link About us ,Home,cart
+// Body ,let build a search bar ,restaurant card ,
+// one card has image ,title 
+//we also have search bar in the body
+
+// Footer
+
+
 in the header we will have logo ,home ,about and cart
 
 in the body section we will search button and cards 
@@ -158,3 +178,15 @@ const Body =() =>{
     ))
   }
 </div> -->
+
+// swiggy use conflict driven ui
+//Suppose there is some another offers mumbai
+//carousel will be different for each cities
+//how can be ui may be different like that 
+//This is known as conflict different ui
+//contolling the ui with the help of the backend
+
+// this is known as conflict driven ui
+// when you built large applicaation,all image will be put in cdn
+
+ 

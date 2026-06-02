@@ -15,6 +15,26 @@ like Search feature
 root folder structure 
 in the documentation it is does not say what does it matter 
 
+to learn about the foleder structure 
+## go to the react folder structure 
+
+.jsx it means react 
+you can use .js extension 
+
+
+.tsx means angular 
+
+Two types of Export /Import 
+- Default EXPORT/Import
+
+export default Component
+import Component from "path"
+
+Named Export /Import 
+export const Component 
+import {Component} from "path"
+
+
 
 Grouping by features or routes 
 
@@ -45,8 +65,21 @@ import {Component} from "path";
 
 in uber Each component must be as small and clean 
 around 100 lines of code 
+Dont put more than 100 ,it is advisable
 
-<!-- const Body =() =>{
+now we will make our interactive ,we will keep learning basic concepts 
+when i click on the button it will show top rated restaturant ,it is a kind of filter
+i want restautrant which have rating >4
+
+here we have to write the filter logic here 
+
+
+Body.js
+
+import RestaurantCard from "./RestaurantCard";
+
+const Body =() =>{
+
   const ListOfRestaurants=[
    {
     info: {
@@ -71,13 +104,22 @@ around 100 lines of code
     },
   },
   ];
+
   return (
     <div className="body">
       <div className="filter">
         <button className="filter-btn"
         
-        onClick={()=>{console.log("Button Clicked")}}
-        onMouseOver={()=>{console.log("Button Clicked")}}
+        onClick={()=>
+        {
+          console.log("Button Clicked")
+        }
+        }
+        onMouseOver={()=>
+        {
+          console.log("Button Clicked")
+        }
+        }
         >Top rated Restaturant</button>
       </div>
       <div className="res-container">
@@ -96,7 +138,7 @@ around 100 lines of code
   )
 };
 
-export default Body; -->
+export default Body; 
 
 
 
@@ -181,6 +223,22 @@ const Body =() =>{
 
 export default Body; -->
 
+
+in the earlier example ui is not updated 
+
+ui layer and data layer are not working together 
+//here react comes into the picture 
+//here listOfRestaurants is normal   variable 
+
+// React comes with a concept of State Variable -super powerful variable
+//For that we use React Hooks 
+// What is Hooks ?
+// A react Hook a normal javascript function ,which is given to us by react 
+// there are multiple such function in react 
+// they are normal js function ,written y javascript developer 
+
+we have to import this utility  function
+
 <!-- // React is effificent in React dom manipulation 
 //Ui and data layer should work together (updating the dom manipulation)
 //There is a concept of virtual dom 
@@ -191,17 +249,20 @@ export default Body; -->
 )
 npm install react we have got  all the utility function 
 react hook is normal javascript function
+it is a utility function
+
+it maintain the state of the component
 
 There are two important function 
--->UseState()
-useEffect()
+-->UseState()-super powerful state variable it gives ,you have import this as named import 
+-->useEffect()
 
 This is used to generate super powerful state variable
 
 Example of filtering 
 Whenever a state variable react render the component
 
-<!-- import RestaurantCard from "./RestaurantCard";    
+import RestaurantCard from "./RestaurantCard";    
 import {useState} from "react";
 
 Function component -- normal javascript function
@@ -219,12 +280,16 @@ LOCAL STATE VARIABLE SCOPE IS INSIDE THE COMPONENT
 Keeps the layer sink with the ui 
 
 
-
-
+import RestaurantCard from "./RestaurantCard";    
+import {useState} from "react";
 const Body =() =>{
 
   // whatever the value we will pass in the useState will become the default of const here 
-  // const [listOfRestaurants]=useState([null]);
+  // const [listOfRestaurants]=useState([null]);  local state variable
+  // let me know how to modify this variable,you have to modify the list of restaturants using setListOfRestaturants 
+  //you can name this whatever you wish to 
+  // you can put res ,then setres 
+
   const [listOfRestaurants,setListOfRestaurants]=useState([
     {
     info: {
@@ -264,6 +329,7 @@ const Body =() =>{
 
 
 //Normal Js VARIABLE
+
 //  let listOfRestaurants=null
   // let listOfRestaurantsJS=[
   //  {
@@ -301,9 +367,62 @@ const Body =() =>{
   //   },
   // },
   // ];
-  // const list =[]
+
+  Example 
+  // lets list =[]
   // lsit=["Abc"];
-  // list.push("Abc");
+  // list.push
+  ("Abc");
+
+
+// here we have put the logic of ui to be updated automatically 
+
+// When a state variable update ,react renders the component 
+//now you can use your mock data as well
+//As soon as state variable update ,the whole component will reder it 
+// react will make the dom operation superfast 
+// the browser has to render the component - This is very efficient function of React 
+//it keeps the ui layer sinks with the di layer
+
+
+// React uses Reconcilitation Algorithm
+//it is also knows as React Fibre 
+We have a dom(it is like a tree)
+
+restaturant container has 7 restaturant cards ,my ui changes from filtering to 3 filtered card 
+react create the virtual dom
+actual dom are the <div> <div> it 
+Virtual Dom is a representation of actual dom 
+Virtual dom are actually those react elements (are nothing but the objects)
+it is nothing but the javascript object ,it is nothing but the objects
+
+what is the diff algorithm
+find out the difference between the two virtual dom ,before and the updated one
+it tries out  find out the difference between the old virtual dom and the new virtal dom
+it will calculate the difference and then update the actual dom in every render cycle
+
+whole algorith is known as Reconcilation Algorithm
+find out the difference between the  react object is easy 
+react will find out the difference easily ,react  doesnt touch the dom 
+it will find out the difference between the virtual dom,render the  
+component 
+that is why it is most populR
+
+THERE IS ALSO KNOWN AS INCREMENTAL RENDERING
+react is doing efficient dom manipulation 
+virtual dom  bascillay the tag which you see (nothing but the javascriot objects)
+react is constantly checking 
+this is the core job of React 
+
+
+
+
+import RestaurantCard from "./RestaturantCard";
+import {useState} from "react"
+import resList from "../utils/mockData
+const Body =() =>{
+ const [listOfRestaurants,setListOfRestraunt]=userState(resList);
+
   return (
     <div className="body">
       <div className="filter">
@@ -337,7 +456,8 @@ const Body =() =>{
   )
 };
 
-export default Body; --> 
+export default Body; 
+
 
 React Hook is a javascript function a normal utility function 
 now we will use the mock date over here 

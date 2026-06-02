@@ -2,6 +2,28 @@ import React  from "react" ;
 import ReactDOM from "react-dom/client";
 
 
+
+// header
+  // logo
+  // Navitem
+//body 
+ // Search 
+ // Restaurant Container card container will have lot of restaturant cards
+     // Restaturant card 
+       // img 
+       // name of rest ,Star rating,cuisine,delivery time 
+
+// footer
+   // Copyright
+   //Links
+   // address 
+   // contact
+
+//---------------------------------------
+// Let start from scratch 
+// app layout 
+
+
 const Header =()=>{
   return (
     <div className="header">
@@ -24,10 +46,15 @@ const Header =()=>{
 // Restaturant card
 // Way to write the inline style take the javascript object 
 // First bract is telling about the javascript ,second bracket is telling about the javascript objects 
+// const styleCard ={
+//   backgroundColor:"gray";
+// }
+
 
 
 const RestaturantCard =() =>{
   return (
+    // < div className="res-card" style={styleCard}>
     <div className="res-card" style={
     {
     backgroundColor:"#f0f0f0",
