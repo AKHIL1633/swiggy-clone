@@ -38,6 +38,8 @@ sms golang ui in react backend in java
 All big companies are using differnt stack which tech stack is usable for it
 
 How These services are connected 
+same as our ui deployed on some port,on different port we can deploy different services 
+
 
 All these services run on their own specific port 
 
@@ -54,10 +56,15 @@ They make call to different port
 
 We will see Ui make connection and explore the world 
 
+
+
 React application make a backend api call and fetch the data
 
 Dummy data is coming from swiggy 
 Now we can see fetch dynamically 
+
+
+here we treat our react project ui microservice
 
 
 Two approach Ui fetch the data from the backend 

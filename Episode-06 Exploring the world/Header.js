@@ -3,7 +3,7 @@
 
 
 // import { LOGO_URL } from "../utils/constant";
-// const Header =()=>{
+// const Header = () => {
 //   // local variable
 //   // on click of the button we should chain the login button to the log out button 
 //   let btnName="Login";
@@ -18,6 +18,10 @@
 //         <li>About Us</li>
 //         <li>Contact us </li>
 //         <li>Card</li>
+
+//      login button  we need to creat a local variable btnName="Login"
+ //      it is not changing
+
 
 //         <button 
 //         className="login" 
@@ -38,15 +42,21 @@
 // export default Header;
 
 // //ui does got updated  that is why javascript does not work that why we used state variable 
+//here no way for the react ot track  in the above example 
 
+ 
 
 // use of state variable 
+// it is rendering the whole header component 
+
+//what will happen ish react will render this component again 
 
 
 // Actually like the component name
 
 // import { LOGO_URL } from "../utils/constant";
 // import { useState } from "react";
+
 // const Header =()=>{
 //   // local variable
 //   // on click of the button we should chain the login button to the log out button
