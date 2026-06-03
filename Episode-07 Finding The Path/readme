@@ -1,18 +1,246 @@
+in this lesson we are creating different pages for different url 
+
+
+
+
+When is the useEffect is called?
+useEffect is called after every times the component render
+this is the definition of useEffect 
+dependency array changes the behaviour of the useEffect
+
+// useeffect  
+// if no dependency array ==> useEffect is called on every render 
+
+useEffect(()=>{
+    console.log("useEffect called")
+})
+
+// if dependency array is empty =[] => useEffect is called on initial render (just once )
+
+import {useState,useEffect} from "react"
+
+const Header=() => {
+useEffect(()=>{
+    console.log("useEffect called");
+},[]);
+}
+
+
+// it will only be called if dependency changes
+// if dependency array is [btnNameReact] =>called everytime btnNameReact is updates 
+
+useEffect(()=>{
+    console.log("useEffect called");
+},[btnNameReact])
+
+// never create useState outside the component
+// create it at the start of the component
+// never create usestate inside the if-else 
+
+// state variable need to be created at the higher level of the component
+//never create the usestate ,useEffect inside the if -else 
+
+
+// to create different routes
+
+
+
+// react router dom
+// npm i react-router-dom
+
+// npm start
+
+// let create a about us page 
+
+// imported createBrowserRouter in app.js
+
+//each configurations is telling the different thing
+
+
+//localhost:1234\about
+// creat component of contact and about 
+
+// in app.js we have to create routing configurations 
+//Roterprovider will provide the configuration to the app
+//This code is written by rEACT ROUTER dom
+//Thisis how create different route in the react
+//Suggest you to use createBrowserRouter 
+//react router dom has created error page for you as well
+// it will give access to the import hook called useRouteError
+// it will give more information about the route
+//if there is anything other url ,it gives the error 
+// React router dom read about it in the document
+// there is need to the children route of the App layout 
+
+app.js
+
+import Rect from "react",
+import ReactDOM from "react-dom/client";
+
+import {createBrowserRouter,RouterProvider} from "react-router-dom"
+
+const appRouter=createBrowserRouter([
+    {
+    path: "/",
+    element:<AppLayout/>,
+    errorElement:<Error/>,
+    },
+    {
+        path:"/about",
+        element:<About/>,
+    }
+    {
+        path:"/contact",
+        element:<Contact/>,
+    }
+    ]
+);
+
+
+const root=ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<RouterProvider router={appRouter}/>)
+
+---------------------------------------------------------------------------------
+// we want to keep the header intact 
+// just body changes 
+// for the about page we want the header and the content 
+// We have chikdren routes
+// i am creating about the children of applayout 
+
+
+const AppLayout=() => {
+    return (
+        <div className="app">
+        <Header/>
+        {/* if path =/ */}
+        <Body/>
+        {/* if path =/about */}
+        <About/>
+        {/* if path =/contact */}
+        <Contact/>
+        </div>
+    );
+};
+
+
+outlet will be filled according to the path 
+we have mention 
+/ the body will be filled 
+/ about the about will be filled 
+/contact the contact will be filled 
+This is how you will route the things 
+// outlet will be replaced by the component according to the path 
+/ ,/about,/contact 
+
+react taking the code of the respective thing and placed over there 
+
+
+
+const AppLayout=() => {
+    return (
+        <div className="app">
+        <Header/>
+        <outlet/>
+        </div>
+    );
+};
+
+
+{/* Applayout has three childresn to load it after the Applayout 
+we make use of outlet}
+const appRouter=createBrowserRouter([
+  {
+  path:"/",
+  element:<AppLayout/>,
+  children:[
+    {
+      path:"/",
+      element:<Body/>,
+
+    },
+    {
+    path:"/about",
+    element:<About/>
+    },
+    {
+    path:"/contact",
+    element:<Contact/>,
+  }
+
+  ],
+  errorElement:<Error/>,
+  }
+]);
+
+const root=ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<RouterProvider router = {appRouter}/>);  
+
+
 our route we will use ReactRouter
+
+
+
+-- to create a link we can use anchor tag for it 
+-- in react never use that 
+-- because the whole page got refreshed
+-- i dont want toreferesh the whole page ,without reloading the whole page 
+-- link to is smoother ,anchor tag will reload the page every time 
+
+header.js 
+
+import {LOGO_URL} from "../utils/constants";
+import {useState} from "react"
+import {Link} form "react-router-dom";
+
+
+<!-- const Header =() => 
+{
+    const[btnNameReact,setBtnNameReact]=useState("Login");
+    // console.log("Header render")
+    return (
+        <div className="header">
+         <div className="logo-container">
+          <img className="logo" src={LOGO_URL}/>
+        </div>
+        <div className="nav-items">
+         <ul>
+          <li>Home</li>
+          <li>
+          <a href="/about">About Us </a>
+          </li>
+          <li>
+          <Link to="/contact">Contact us</Link>
+          </li>
+          <li>Cart</li>
+          <button 
+            className="login"
+            onClick={()=>{
+                btnNameReact ==='Login' ? setBtnNameReact("Logout")
+                : setBtnNameReact("Login");
+            }}
+            >
+            {btnNameReact}
+            </button>
+            </ul>
+            </div>
+            </div>
+    );
+}; -->
+
 
 // react application are single page application as every thing is component in react
 //you have to navigate through the page your browser will not load ,this is known as single page application
 Reactrouter.com/en/main
 just the components get interchanged at the client side routing 
+// the browser will not the entire page 
+
+There are two routing in web application 
+1)Client Side routing
+2)Server side routing 
 
 
-npm install react-router-dom
-let create the about us Page 
-if we write /about it should move to the about page
-
-rafce 
-
-on rndom url it will throw an error  
 
 when we are moving to the about us and contact page we are losing the header and footer 
 i want to keep my header intact 
@@ -27,10 +255,11 @@ fetches that html  and renders that  to the web page
 
 This is server side routing 
 
-You make the networks call and about.html is coming from the server 
-1)Client Side Routing 
+You make the networks call and about.html is coming from the server
 
-All the components are loaded for the app
+1)Client Side Routing  React 
+
+All the components are loaded to the app
 when i loaded the app for the first time ,it already has the code for about ,it will just load that componet 
 i am not fetching the new page 
 2)Server side Routing-you make the network call and page is coming from the server
@@ -47,24 +276,329 @@ all the components are loaded  in our side
 Why react is single page application ?
 
 one page  just components is getting interchanged via client side routing 
-// we are going to make f=differnt page for different restaurant 
+// we are going to make differnt page for different restaurant 
 
 We will see how dynamic routing work 
+
+let make our app dynamic 
+let make our food application even better 
+
+we are going to make different page for different restaturant 
+
+
 /restaurant/meghanafood
 /restaurant/coffeehouse
 
 we have dynamic route for different restaurant
+in swiggy.com if i go  meghana foods 
 
+swiggy.com/restaurants/meghana-foods-5th-block-koramanagala-bangalore-229
 
+different routes when i click on meghana foods 
+we have dynamic route for every page 
 
-now our task is to make our application functional 
+it will show the menu page api 
+you can json struction jsonviewer chrome 
 
+i want to build  diffent api for restaturant  menu 
 
 We will make different pages for  the different restaurant
 
-Behind the scene link uses anchor tag
+RestaturantMenu.js 
+
+const RestaurantMenu=() =>{
+    retrun(
+        <div className="menu">
+            <h1>Name of the Restaurant</h1>
+            <h2>Menu</h2>
+            <ul>
+                <li>Biryani</li>
+                <li>Burgers</li>
+                <li>Diet Coke</li>
+            </ul>
+        </div>
+    );
+};
+
+export default RestaurantMenu 
+
+
+in the app.js 
+create one more route over there 
+
+const appRouter=createBrowserRouter([
+{
+path:"/" ,   
+element:<AppLayout/>,
+children:[
+  {
+    path:"/",
+    element:<Body/>
+  },
+  {
+   path:"/about",
+   element:<About/>
+  }
+  {
+    path:"/contact",
+    element:<Contact/>,
+  },
+  {
+    path:"/restaurants/:resId",
+    element:<RestaurantMenu/>
+    
+    
+    //resid is the dynamic as every restaurant has different index
+    // out route will be unique 
+
+
+  }
+  ],
+  errorElement:<Error/>
+}])
+
+Let load get the actual data
+
+
+RestaturantMenu.js 
+
+import {useEffect,useState} from "react"
+
+const RestaurantMenu=() =>{
+    
+    const [resInfo,setResInfo]=useState(null);
+    useEffect(()=> {
+     fetchMenu();
+    },[]);
+
+    const fetchMenu=async() => {
+        const data =await fetch("");
+
+        const json=await data.json();
+
+        console.log(json);
+        setResInfo(json.data);
+    };
+    if(resInfo === null)return <Shimmer/>
+
+    <!-- if(resInfo === null) return <Shimmer/> ; -->
+
+    CARD[0] == RESTATURANT INFORMATION 
+    CARD[1] == OFFER INFORMATION
+    CARD[2] == MENU DATA
+     // Swiggy backend is giving tones of data 
+     // loading only data which is required in your app
+
+    const {name,cuisines,cloudinaryImageId,costForTwoMessage}= resInfo?.cards[0]?.card?.card?.info;
+    // here we have shown the recommended itemCards
+
+    const {itemCards}=resInfo?.cards[2]?.groupedCard?.cardsGroupMap?.REGULAR?.cards[1]?.cards?.card
+    console.log(itemcard);
+
+    return (
+        <div className="menu">
+            <h1>{name}</h1>
+            <h2>{cuisines.join(",")}</h2>
+            <h3>{costForTwoMessage}</h3>
+            <h2>Menu</h2>
+            <ul>
+                {itemCards.map(item) => (<li key={item.card.info.id} >
+                    {item.card.info.name}-{"Rs."}
+                    {item.card.info.price/100 || item.card.info.defaultPrice/100}</li>)}
+
+
+
+                <!-- <li>{itemCards[0].card.info.name}</li>
+                <li>{itemCards[1].card.info.name}</li>
+                <li>{itemCards[1].card.info.name}</li>
+            </ul> -->
+        </div>
+        )
+};
+
+// i have to see how we read res id  from the url 
+// we have to make use of params
+
+
+
+import Shimmer from "./Shimmer"
+import {useEffect,useState} from "react"
+import {useParams} from "react-router-dom";
+import {MENU_API} from "..utils/constants";
+
+
+const RestaurantMenu=() =>{
+    // params is th object with the resid
+    const [resInfo,setResInfo]=useState(null);
+    //resid contain the value
+    const{resId}=useParams();
+
+    useEffect(()=> {
+     fetchMenu();
+    },[]);
+  // ideally the api should comes from the constant 
+
+  
+    const fetchMenu=async() => {
+        //it is dynamic whose over id we have entered ,it will come to that page 
+        // according to the id that page we will come
+        const data =await fetch(MENU_API +resId);
+
+        const json=await data.json();
+
+        console.log(json);
+        setResInfo(json.data);
+    };
+    if(resInfo === null)return <Shimmer/>
+
+    <!-- if(resInfo === null) return <Shimmer/> ; -->
+
+    CARD[0] == RESTATURANT INFORMATION 
+    CARD[1] == OFFER INFORMATION
+    CARD[2] == MENU DATA
+     // Swiggy backend is giving tones of data 
+     // loading only data which is required in your app
+
+    const {name,cuisines,cloudinaryImageId,costForTwoMessage}= resInfo?.cards[0]?.card?.card?.info;
+    // here we have shown the recommended itemCards
+
+    const {itemCards}=resInfo?.cards[2]?.groupedCard?.cardsGroupMap?.REGULAR?.cards[1]?.cards?.card
+    console.log(itemcard);
+
+    return (
+        <div className="menu">
+            <h1>{name}</h1>
+            <h2>{cuisines.join(",")}</h2>
+            <h3>{costForTwoMessage}</h3>
+            <h2>Menu</h2>
+            <ul>
+                {itemCards.map(item) => (<li key={item.card.info.id} >
+                    {item.card.info.name}-{"Rs."}
+                    {item.card.info.price/100 || item.card.info.defaultPrice/100}</li>)}
+
+
+
+                <!-- <li>{itemCards[0].card.info.name}</li>
+                <li>{itemCards[1].card.info.name}</li>
+                <li>{itemCards[1].card.info.name}</li>
+            </ul> -->
+        </div>
+        )
+};
+
+
+now make the  RestaurantCard clickable
+we will use the Link component
+
+we will go to the body.cs 
+using linkTo because it does not refresh the page 
+
+Let me go to the inspect in the elements of it 
+for the link to ,it changes to a href we still have  anchor tag
+link is a compont given by reactrouterdom behind the scenes
+link is using the anchor tag
 Link is a wrapper over anchor tag 
 
-React dom keep track the home is a link not a anchor tag 
+react router dom keep a track of it ,it will render that component only
+
+browser understand anchor tag
+,most of the developer does not see the developer console 
+,there is need to eplore it
+
+
+we have learn about the useeffect uses with dependency ,without dependency
+we cant call usestate before it 
+to read the error message we have used useRouteError
+How we can load children 
+it is client side Routing
+we have dynamic route 
+
+-------------------------------------------------------
+
+
+import RestaurantCard from "./RestaurantCard";
+import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
+import {Link} from "react-router-dom"
+
+
+const Body = () => {
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  const [filteredRestaurant, setfilteredRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState("")
+  useEffect(() => {
+    fetchData();
+
+  }, []);
+  const fetchData = async () => {
+    const data = await fetch("https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const json = await data.json();
+    console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+
+    const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    setListOfRestaurants(restaurants || []);
+    setfilteredRestaurant(restaurants || []);
+  };
+  return listOfRestaurants.length === 0 ? (<Shimmer />) : (
+    <div className="body">
+      <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value)
+              if (e.target.value === "") {
+             setfilteredRestaurant(listOfRestaurants);
+            }
+
+            }} />
+          <button
+            onClick={() => {
+              console.log(searchText);
+              const filtered = listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              );
+              setfilteredRestaurant(filtered);
+            }}
+          >
+            Search
+          </button>
+        </div>
+       <button
+  className="filter-btn"
+  onClick={() => {
+    const filteredList = listOfRestaurants.filter(
+      (res) => res.info.avgRating >= 4.3
+    );
+    setfilteredRestaurant(filteredList);
+  }}
+>
+  Top Rated Restaurant
+</button>
+      </div>
+      <div>
+        <div className="res-container">
+          {
+            filteredRestaurant.map((restaurant) => (
+              <Link key={restaurant.info.id} to={"/restaurants"+ restaurant.info.id}><RestaurantCard
+                resData={restaurant}
+              /></Link>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  )
+};
+
+export default Body;
+
+
+----------------------------------------------------------------
+
+let Get Classy 
 
 

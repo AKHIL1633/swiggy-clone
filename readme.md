@@ -10,3 +10,13 @@ inspect>console
 inspect>network
 inspect>application
 
+rafce 
+
+in jsx comment should be written as 
+
+{/* */}
+
+
+whenever you use map in the code,always have a key over there 
+key 
+
