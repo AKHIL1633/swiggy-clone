@@ -8,6 +8,1200 @@ a react never need to use now
 Class based component are very important to know
 it is important to know older project have class based components
 
+to start our project 
+npm start 
+
+we have about about page right 
+let create a class based component 
+showcase teammember details from the github
+
+let create a functional component first user.js
+Const User=()=>{
+    return <div className="user-card">
+     <h2>Name :Akshay </h2>
+     <h3>Location: Dehradun</h3>
+     <h4>Contact: @akshaymarch7</h4>
+     </div>
+}
+export default User;
+
+
+how this component i can show in ABout.us page 
+import User from "./User";
+const About =() =>{
+    return (
+        <div>
+        <h1>About</h1>
+        <h2>this is namaste React web Series </h2>
+        <User/>
+        </div>
+    );
+};
+
+export default About ;
+
+
+index.css
+
+
+.user-card {
+    padding:10px;
+    border: 1pxs olid black;
+}
+
+i will convert user to class based component
+class based component has a method which will return 
+jsx 
+UserClass.js
+render method will return the piece of jsx 
+
+
+import React from "react";
+class UserClass extends React.Component {
+    render(){
+        return (
+      <div className="user-card">
+       <h2>Name:Akshay</h2>
+       <h3>Location:Dehradun</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+
+}
+
+export default UserClass
+
+
+TO IMPORT USER CLASS AND USE IT HERE 
+about.js
+
+import User from "./User";
+import UserClass from "./UserClass";
+
+const About =() =>{
+    return (
+    <div>
+    <h1> About </h1>
+    <h2>This is Namaste React web Series</h2>
+    <User/>
+    <UserClass/>
+    )
+}
+
+export default About
+
+
+How to props in functionalcomponent
+
+import User from "./User";
+import UserClass from "./UserClass";
+
+const About=() => {
+    return (
+        <div>
+        <h1>About</h1>
+        <h2>This is Namaste React Web Series </h2>
+        <User name={"Akshay Saini (function)"}/>
+        <UserClass/>
+        </div>
+    );
+};
+
+export default About 
+
+User.js 
+
+const User= (props) => {
+    return (
+        <div className="user-card">
+        <h2>Name:{props.name}}</h2>
+        <h3>Location:Dehradun</h3>
+        <h4>Contact:@akshaymarch07</h4>
+    );
+};
+export default User
+
+
+------------------------------------------------
+Const User=({name})=>{
+    return (
+        <div className="user-card">
+        <h2>Name:{name}</h2>
+        <h3>Location:Dehradun</h3>
+        <h4>Contact:@akshaymarch7</h4>
+        </div>
+    );
+};
+export default User;
+
+
+----------------------------------------------------
+import User from "./User";
+import UserClass from "./UserClass";
+
+const About=() => {
+    return (
+        <div>
+        <h1>About</h1>
+        <h2>This is Namaste React Web Series </h2>
+        <User name={"Akshay Saini (function)"}/>
+        <UserClass name={"Akshay Saini(class)"} location={"Dehradun class"}/>
+        // all will combined into the single object 
+        </div>
+    );
+};
+----------------------------------------------------
+in the class based component we have constructor which will receive the props
+
+
+import React from "react";
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+    }
+    render(){
+        return (
+      <div className="user-card">
+       <h2>Name:{this.props.name}</h2>
+       <h3>Location:{this.props.location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+
+}
+
+export default UserClass;
+
+// we definitely have to use super(props)
+//otherwise it will throw an error 
+// we have use this to access the props of super 
+//it can ve accessed anywhere in the class using this 
+
+----------------------------------------
+Whenever  instance of class is created ,a constructor is called
+you can use anywhere inside the code 
+
+we can destructure it as well
+
+
+
+import React from "react";
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+    }
+    render(){
+        const {name,location}=this.props
+        return (
+      <div className="user-card">
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+
+}
+--------------------------------------------------------
+How we can create state variable inside the class Based component
+
+IN FUNCTIONAL Component
+
+import {useState} from "react"
+const User=({name})=>{
+    const [count]=useState(0);
+    return (
+        <div className="user-card">
+        <h1>Count={count}</h1>
+        <h2>Name:{name}</h2>
+        <h3>Location:Dehradun</h3>
+        <h4>Contact:@akshaymarch7</h4>
+        </div>
+    );
+};
+export default User 
+
+
+how can we create inside Classbasedearlier there was no functional 
+state was created when we created instance of the class
+
+rendering the functional component 
+on your web page if there is functional component
+you are mounting or invoking the functional component on that web page
+mounting that fc on that web pagev
+
+loading the class based component means 
+state was creating when the instance of the class is created
+you are creating the instance of the class 
+
+constructor is called 
+best place to create state variable
+
+
+
+import React from "react";
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+        this.state={
+            count:0
+        }
+    }
+    render(){
+        const {name,location}=this.props
+        return (
+      <div className="user-card">
+      <h1>Count :{this.state.count}</h1>
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+
+}
+
+--------------------------------------------
+another way 
+
+
+
+import React from "react";
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+        this.state={
+            count:0
+        }
+    }
+    render(){
+        const {name,location}=this.props
+        const {count}=this.state
+        return (
+      <div className="user-card">
+      <h1>Count :{count}</h1>
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+
+}
+-----------------------------------------
+
+if you want to create fron state variable 
+
+IN FUNCTIONAL Component
+
+import {useState} from "react"
+const User=({name})=>{
+    const [count]=useState(0);
+    const [count2]=useState(1);
+    return (
+        <div className="user-card">
+        <h1>Count={count}</h1>
+        <h1>Count2={count2}</h1>
+        <h2>Name:{name}</h2>
+        <h3>Location:Dehradun</h3>
+        <h4>Contact:@akshaymarch7</h4>
+        </div>
+    );
+};
+export default User
+
+behind the scene it will make one stare variable 
+how we do in class based component 
+
+
+
+import React from "react";
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+        // it will hold state variable
+        this.state={
+            count:0
+            count2:2
+        }
+    }
+    render(){
+        const {name,location}=this.props
+        const {count,count2}=this.state
+        return (
+      <div className="user-card">
+      <h1>Count :{count}</h1>
+      <h1>Count2:{count2}</h1>
+
+
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+
+}
+
+-------------------------------------------
+
+We will see how we can update the state variable 
+
+in function component
+
+import {useState} from "react"
+const User=({name})=>{
+    const [count,setCount]=useState(0);
+    const [count2]=useState(1);
+    return (
+        <div className="user-card">
+        <h1>Count={count}</h1>
+        <h1>Count2={count2}</h1>
+        <h2>Name:{name}</h2>
+        <h3>Location:Dehradun</h3>
+        <h4>Contact:@akshaymarch7</h4>
+        </div>
+    );
+};
+export default User
+
+
+-----------------------------------------------
+in class how we can update this state varibale let 
+create a button
+
+
+import React from "react";
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+        // it will hold state variable
+        this.state={
+            count:0,
+            count2:1;
+        }
+    }
+    render(){
+        const {name,location}=this.props
+        const {count}=this.state
+        return (
+      <div className="user-card">
+      <h1>Count :{count}</h1>
+      <button onClick={()=>{
+        this.state.count=this.state.count+1; // this is wrong which a lot of people make 
+        // Never Update State Variables Directly
+        //React will give access to the important function known as this.setState
+        //you can batch this up 
+
+
+        this.setState({
+            count:this.state.count+1,
+            count2:this.state.count2+1;
+        })
+      }}>Count Increase</button>
+
+
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+
+    here count is getting increased 
+    react will rerendering the component,this will change the portion of the html
+
+
+}
+
+
+--------------------------
+
+How Life Cycle works 
+How compoonent is mounted 
+What are the lifecycle methods 
+
+//loading means mounting the component 
+
+// it will start rendering the jsx 
+
+
+//about us is the parent component
+//userclass is inside it
+
+//it will go line by line
+// userclass is called
+//constructor or new instance of the class is called
+//then render is called
+
+// first constructor is called 
+//then the render is called
+
+About.js 
+
+
+
+
+import User from "./User";
+import UserClass from "./UserClass";
+ import React from "react"
+class About extends React.Component {
+
+    render(){
+        return (
+            <div>
+            <h1>About Class Component </h1>
+            <h2>This is Namaste React Web Series </h2>
+            <UserClass name={"Akshay Saini (classs)"} location={"Dehradun Class"}/>
+            </div>
+        );
+    }
+}
+
+
+or 
+
+about class is class based component now 
+
+---------------------------------------------------
+
+import User from "./User";
+import UserClass from "./UserClass";
+import {Component} from "react"
+class About extends Component {
+    constructor(props){
+        super(props);
+        console.log(" Parent Constructor")
+    }
+
+    render(){
+        return (
+        console.log("Parent Render")
+            <div>
+            <h1>About Class Component </h1>
+            <h2>This is Namaste React Web Series </h2>
+            <UserClass name={"Akshay Saini (classs)"} location={"Dehradun Class"}/>
+            </div>
+        );
+    }
+}
+
+
+import React from "react";
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+        // it will hold state variable
+        this.state={
+            count:0,
+            count2:1;
+        };
+        console.log("Child Constructor");
+    }
+    render(){
+        const {name,location}=this.props
+        const {count}=this.state
+        console.log("Child Render")
+        return (
+      <div className="user-card">
+      <h1>Count :{count}</h1>
+      <button onClick={()=>{
+        this.state.count=this.state.count+1; // this is wrong which a lot of people make 
+        // Never Update State Variables Directly
+        //React will give access to the important function known as this.setState
+        //you can batch this up 
+
+
+        this.setState({
+            count:this.state.count+1,
+            count2:this.state.count2+1;
+        })
+      }}>Count Increase</button>
+
+
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+}
+
+
+when the about.js component is loaded .constructor will be called
+parent constructor
+parent render
+child Constructor
+child render
+
+
+classbased component has also important method componentDidMount()
+another method 
+component is loaded
+ -- constructor is loaded 
+ -- render method is called 
+ --then mount will be called 
+
+
+When the useClass is load,
+1)Constructor is called
+2)Render is called 
+3)Mount is called 
+
+This is the life cycle of react 
+
+import React from "react";
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+        // it will hold state variable
+        this.state={
+            count:0,
+            count2:1;
+        };
+        console.log("Child Constructor");
+    }
+
+    componentDidMount(){
+console.log("Child Component Did mount");
+    }
+
+    render(){
+        const {name,location}=this.props
+        const {count}=this.state
+        console.log("Child Render");
+
+        return (
+      <div className="user-card">
+      <h1>Count :{count}</h1>
+      <button onClick={()=>{
+        this.state.count=this.state.count+1; // this is wrong which a lot of people make 
+        // Never Update State Variables Directly
+        //React will give access to the important function known as this.setState
+        //you can batch this up 
+
+
+        this.setState({
+            count:this.state.count+1,
+            count2:this.state.count2+1;
+        })
+      }}>Count Increase</button>
+
+
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+}
+-------------------------------------------------------------
+i will put componentdidmount inside the parent as well
+
+import User from "./User";
+import UserClass from "./UserClass";
+import {Component} from "react"
+class About extends Component {
+    constructor(props){
+        super(props);
+        console.log(" Parent Constructor")
+    }
+    componentDidMount(){
+        console.log("Parent Component Did Mount");
+    }
+
+    render(){
+        return (
+        console.log("Parent Render")
+            <div>
+            <h1>About Class Component </h1>
+            <h2>This is Namaste React Web Series </h2>
+            <UserClass name={"Akshay Saini (classs)"} location={"Dehradun Class"}/>
+            </div>
+        );
+    }
+}
+
+in what order this method will be called 
+
+Parent Constructor
+Parent Render 
+Child Constructor
+Child Render 
+Child Component Did Mount 
+Parent Componet Did Mount 
+
+When the child component did mount successfully
+then parent component did mount 
+
+
+Component didmount is used to make api call 
+they done why it is made inside 
+
+To know this 
+
+take you back to the function component
+
+we make an api called inside use effect 
+
+
+We first load our componet in that we see Shimmer 
+then we make api call 
+instead of waiting for api to fetch the data 
+that is why we to use useeffect 
+
+
+let learn how to make the api called in the class based componet 
+
+
+import User from "./User";
+import UserClass from "./UserClass";
+import {Component} from "react"
+class About extends Component {
+    constructor(props){
+        super(props);
+        console.log(" Parent Constructor")
+    }
+    componentDidMount(){
+        console.log("Parent Component Did Mount");
+
+        // Api call 
+
+    }
+
+    render(){
+        return (
+        console.log("Parent Render")
+            <div>
+            <h1>About Class Component </h1>
+            <h2>This is Namaste React Web Series </h2>
+            <UserClass name={"Akshay Saini (classs)"} location={"Dehradun Class"}/>
+            </div>
+        );
+    }
+}
+
+
+what if we have multiple children
+
+
+
+import User from "./User";
+import UserClass from "./UserClass";
+import {Component} from "react"
+class About extends Component {
+    constructor(props){
+        super(props);
+        console.log(" Parent Constructor")
+    }
+    componentDidMount(){
+        console.log("Parent Component Did Mount");
+    }
+
+    render(){
+        return (
+        console.log("Parent Render")
+            <div>
+            <h1>About Class Component </h1>
+            <h2>This is Namaste React Web Series </h2>
+            <UserClass name={"Akshay Saini (classs)"} location={"Dehradun Class"}/>
+            <UserClass name={"Elon Musk"} location={"US"}/>
+            </div>
+        );
+    }
+}
+
+There are two component now 
+we have created two instance of two class
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+        // it will hold state variable
+        this.state={
+            count:0,
+            count2:1;
+        };
+        console.log(this.props.name+"Child Constructor");
+    }
+
+    componentDidMount(){
+     console.log(this.props.name+"Child Component Did mount");
+    }
+
+    render(){
+        const {name,location}=this.props
+        const {count}=this.state
+        console.log("Child Render");
+
+        return (
+      <div className="user-card">
+      <h1>Count :{count}</h1>
+      <button onClick={()=>{
+        this.state.count=this.state.count+1; // this is wrong which a lot of people make 
+        // Never Update State Variables Directly
+        //React will give access to the important function known as this.setState
+        //you can batch this up 
+
+
+        this.setState({
+            count:this.state.count+1,
+            count2:this.state.count2+1;
+        })
+      }}>Count Increase</button>
+
+
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+}
+
+in what order this console log will be printed
+
+
+// it is the wrong order 
+
+-Parent Constructor
+-Parent render
+   -Akshay Constructor (first)
+   -Akshay Render 
+   -Akshay ComponentDidMount
+
+   -Elon Constructor   (second)
+   -Elon Render
+   -Elon ComponentDidMount
+
+Parent ComponentDidMount
+
+
+correct answer
+
+
+Parent Constructor
+Parent Render
+Akshay Saini(class)Child Constructor
+Akshay Saini(class)Child Render
+Elon MuskChild constructor
+Elon MuskChild Render
+Akshay Saini(class) child Component Did Mount
+Elon Musk Child Component Did mount
+Parent Component did mount 
+
+
+why this lifecycle work like this 
+
+react lifecyce 
+
+https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+
+
+mounting => Updating => Unmounting
+react is fast 
+react has two phase 
+a)render phase
+b)commit phase 
+
+mounting phase -- every parent ,every child it will happen 
+
+First the constructor method is called 
+render method is called 
+React updated the Dom
+then componentDidmount will call 
+
+About mount
+abount constructor
+about render
+first child mount
+first child constructor 
+first child render it will called the second child constructor
+as rendering happen in batches
+and also commit phases is batched
+
+react batching up the rendering of the child 
+
+dom manipulation is expensive 
+
+
+commit takes time 
+
+
+
+- Parent Constructor
+-Parent Render 
+  - First Constructor 
+  - First Render
+
+  -Second Constructor
+  -Second Render
+   reconcilation algorith 
+  <Dom updated - in Single Batch >
+  -First Componetdidmount 
+  -Second componetDidmount 
+
+-Parent Componetdidmount
+
+react will do render phase of all the childrean at once 
+and then the commit phase 
+
+
+---------------------------------------
+
+
+How to make api call in the class Based component?
+githubuser 
+
+https://api.github.com/users/AKHIL1633
+
+in functionalcomponent
+import {useState} from "react"
+const User =({name}) => {
+    const [count,setCount]=useState(0);
+    const [count2]=useState(1);
+    useEffect(()=>{
+        //Api calls
+    },[]);
+
+    async function getUserInfo(){
+        const data
+    }
+}
+
+
+in class based component we habe to make async to componentDidMount
+
+
+
+
+
+
+import User from "./User";
+import UserClass from "./UserClass";
+import {Component} from "react"
+
+class About extends Component {
+    constructor(props){
+        super(props);
+    }
+    componentDidMount(){
+    
+    }
+
+    render(){
+        return (
+        console.log("Parent Render")
+            <div>
+            <h1>About Class Component </h1>
+            <h2>This is Namaste React Web Series </h2>
+            <UserClass name={"Akshay Saini (classs)"} location={"Dehradun Class"}/>
+            <UserClass name={"Elon Musk"} location={"US"}/>
+            </div>
+        );
+    }
+}
+
+
+
+
+// we will get information from the live api
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            //local state variable
+            userInfo:{
+                name:"Dummy",
+                location:"default",
+                avatar_url:"http://dummy-photo.com",
+            }
+        };
+        console.log(this.props.name+"Child Constructor");
+    }
+
+    async componentDidMount(){;
+     const data=await fetch("https://api.github.com/users/AKHIL1633");
+     const json =await data.json();
+     console.log(json);
+
+     this.setState({
+        userInfo:json,
+     }),
+     console.log(json);
+    }
+
+    render(){
+        const {name,location,avatar_url}=this.state.userinfo;
+        return (
+            <div className="user-card">
+            <img src={avatar_url} />
+            <h2>Name:{name}</h2>
+            <h3>Location:{location}</h3>
+            <h4>Contact:@akshaymarch7</h4>
+            </div>
+        );
+    }
+}
+export default UserClass
+
+//how the whole life cycle works 
+
+// important 
+// as soon as userclass loaded 
+// constructor is called then  render happen but the state variable has default value
+// react will update with the default data 
+//component render with dummy data
+// now our componentDid Mount was called
+
+// api called was made 
+
+// setstate is called ,updated cycle is called 
+//updating phase is called 
+// set state update the state variable
+//react trigger render once again 
+// the render happen the state has been changed with the updated value 
+
+//the react will update the dom with the new value 
+// now it will call Component Did Update also 
+
+// We have also
+ ComponentDidUpdate(){
+    console.log("Component Did Update")
+}
+
+
+
+/******
+ *
+ * //this is our mounting life cycle
+
+ * Constructor(dummy data) 
+ * Render (dummy) 
+ *    <Html Dummy >
+ *Component Did Mount
+ *   <Api call>
+ *   <this.setState> -> State variable is updated 
+ -------------------
+ *update cycle is called 
+ * render(Api Data)
+ * <Html (new Api data)
+ * componentDid Update 
+
+There is unmounted cycle as well
+//the component will be disappear from the web page 
+
+// when we go the contact us 
+// about will be unmount first 
+
+
+// mounting updating unmounting 
+// This is how life cycle works 
+
+// old repoistory of react ,you will find the code this like it 
+
+//never ever compare react life cycle methods to functional component one 
+
+
+// in class based component 
+// after first render component did mount will be called 
+//and after every sequence  it is update 
+
+//useeffect we do []  aaray ,it will calleed just once for the initial render 
+// don have to remember the life cycle 
+
+// what if i write [count],every time my count changes render will happen 
+
+//in class based 
+// componentDid update will be called after every update 
+
+import React from "react"
+class Profile extends React.component{
+    constructor(props){
+        super(props);
+        // Creatr state 
+        this.state={
+            userInfo:{
+                name:"Dummy Name",
+                location:"Dummy Location",
+            },
+        };
+        console.log("Child -Constructor" +this.props.name);  
+    }
+    async componentDidMount(){
+        //Api calls 
+        const data=await fetch("https://api.github.com/users/akshaymarch7");
+        const json =await data.json();
+        console.log(json);
+        this.setState({
+            userInfo:json,
+        });
+        console.log("Child- componentDidMount" +this.props.name);
+    }
+}
+// it is called after every update
+// in the new version react take care of it 
+
+componentDidUpdate(prevProps,prevState ){
+    if(this.state.count!== prevState.count ||
+     this.state.count !===prevState.count
+    ){
+        //code 
+
+
+    }
+    console.log("ComponentDid Update");
+}
+componentWillUnmount() {
+    console.log("componentWillUnmount);
+}
+render(){
+    const{count}=this.state ;
+    console.log("child-render"+ this.props.name);
+    return (
+        <div>
+        <h1> Profile Class Component </h1>
+        <img src={this.state.userInfo.avatar_url}/>
+        <h2>Name:{this.state.userInfo.name}</h2>
+        <h2>Location:{this.state.userInfo.location}</h2>
+        </div>
+    );
+}
+
+//  dive even more 
+// i want to do something for an useeffect 
+// and something else for other useeffect
+
+
+
+// there we will use two useEffect()
+// in the componentDidUpdate we will used two if and else condition
+// if and else is very very long 
+
+// whwn we will use componentWillUnmount
+// what type of clean up
+// what clean up i should do 
+
+//it is caleed when we are leaving the page 
+// there are lot of things we need to clear when we are leaving the page 
+// whenever you are changing your page it is not changing your page 
+//it is changing the component it is single page client side application
+
+// think of it how much perform loss you are doing
+//if a user swithch to one page to another very frequent
+// why there is need to unmount the thing ?
+// you need to take care of every code you are writing 
+
+// every time i load by component, component didmount will be called 
+at setInterval ,it will stay
+
+//whenever tell them to remove the setInterval
+//How do you clear this interval 
+//i will useclear interval in the componentWillUnmount
+
+
+
+
+import React from "react"
+class Profile extends React.Component{
+    constructor(props){
+        super(props);
+        // Creatr state 
+        this.timer=state={
+            userInfo:{
+                name:"Dummy Name",
+                location:"Dummy Location",
+            },
+        };
+        console.log("Child -Constructor" +this.props.name);  
+    }
+    componentDidMount(){
+        this.setInterval(()=>{
+            console.log("Namaste React Op");
+        },1000);
+        console.log("ComponentWillUnmount");
+    }
+    componentWillUnmount(){
+        clearInterval(this.timer);
+        console.log("ComponetWillUnmount");
+        
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------
+import React from "react";
+
+class UserClass extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(props);
+    }
+    render(){
+        const {name,location}=this.props
+        return (
+      <div className="user-card">
+       <h2>Name:{name}</h2>
+       <h3>Location:{location}</h3>
+       <h4>Contact:@akshaymarch7</h4>
+     </div>
+        );
+    }
+
+}
+
+
+
+we will have two border
+one is functional based component
+other is class based component
+
+
+
+
+
 understanding of the react become very strong 
 it will tell you the how the react lifecycle work 
 
