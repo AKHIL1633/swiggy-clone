@@ -1143,10 +1143,35 @@ class Profile extends React.Component{
     componentWillUnmount(){
         clearInterval(this.timer);
         console.log("ComponetWillUnmount");
-        
+
     }
 
 }
+
+
+but how will destroy if it is in functional Component//there 
+is something known as unmount
+that function will becalled ,when you are unmounting it 
+//useffect callback you cant used async 
+
+import{useEffect,useStae} from "react"
+const Profile=(props)=> {
+    const [count,setCount]=useState(0);
+    
+    useEffect(()=>{
+        //Api call
+        this.timer=setInterval(()=>{
+            console.log("Namaste React op ");
+        },1000);
+
+        return () =>{
+        clearInterval(this.timer);
+        console.log("ComponetWillUnmount");
+        }
+    
+    },[]);
+}
+
 
 
 
