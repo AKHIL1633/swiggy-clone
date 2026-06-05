@@ -1,0 +1,250 @@
+Here we can store how we can manage state ,data of our application using redux
+
+Redux work in data layer 
+data layer and ui layer works in sink
+
+lot of projects use redux 
+what major concept 
+they start using redux first day itself 
+it is not a problem 
+redux is not mandatory
+most companies use redux with react 
+
+
+Redux is not mandatory 
+
+we have not yet use redux 
+redux is not a mandatory thing 
+for large scale application 
+data is huge ,lot of component ,large number of readand write operation 
+
+redux is not mandatory 
+thereare developer 
+most of them dont  react and redux 
+
+Redux and react are differnt libraries 
+they are not the same things 
+
+use redux wisely only when it is required 
+redux is not only library for managing state 
+
+Zustand is a lightweight library 
+
+Advantage:
+Redux handle data ,managing the store 
+there are other library ,they are doing the same things 
+
+we will talking about Redux 
+
+
+Redux is use to hANDLE THE state of the application 
+
+Redux offers easy  debugging
+
+Chrome extension 
+we also have redux dev tools ,help to debug our application 
+
+
+------------------------------------------------
+
+
+redux website 
+
+A predictable State Container for Js apps 
+
+redux offers state management 
+it works with othr library as well
+
+there are two library 
+
+
+1)React-Redux  kind of bridge between react and redux
+
+2)Redux Toolkit
+
+redux has simplified a lot
+today we learn about redux toolkit which is used in the industry 
+
+today we will learn ,it is standard of writing the redux 
+
+we will not use the Vanilla Redux
+
+Redux toolkit
+
+is intended to be the standard way to write Redux logic 
+
+What is the difference between the two vanilla redux and redux toolkit
+
+
+Redux was very complicated ,
+Configuring a Redux store is too complicated 
+
+b) I have to add a lot of packages to get Redux to do anything useful
+
+c)Redux requires too much boilerplate code 
+now the code is short ,we will do lot of things out of box 
+
+rtk in your application
+
+
+read the documentation 
+you will learn lot of things
+
+
+lets learn Architeture of Redux toolkit 
+then writing code will be very easy for you 
+
+
+Let us build something known as cart 
+if iclick on the add button it should inside the cart item 
+
+
+in the cart it will increase to one 
+
+to store all the cart information we will use our redux store , first learn the architecture of redux toolkit 
+
+
+
+What is the redux toolkit rchitecture ?
+
+website 
+ header 
+   logo              cart
+
+   menu page of meghana biryani 
+
+   lot of items we can choose from 
+   we have add button over here 
+   what happen when we click on the add button 
+   how it will go in the cart
+
+   in the cart ,it should increase when we add the item 
+
+   we will using for managing the application
+
+Redux store - big object kept on the global central page 
+
+
+
+redux store -- any componet can access it 
+we will keep most of the major data 
+it is good to keep the wholething
+it is compleely fine 
+redux store has slices 
+
+
+slices of the redux store 
+small portion of the redux store 
+
+to keep data  seperate
+
+user slice 
+cart slice 
+theme slice -dark and 
+display cart 
+
+
+-- logical seperation 
+
+when i click on the add button 
+how it will go to the cart slice 
+you cant directly modify the cart slice 
+
+i have to dispatch and action 
+when you clicl on the add button 
+it will dispatch an action --> it calls a function this function will modify the cart 
+the function internally modify the cart slice 
+
+
+click on add button  -> dispatch an action -> an action called a function -> function will modify the cart 
+
+
+
+The function will known as reducer 
+
+
+When you click on the add button -> dispatch an action -> call the reducer function -> reducer function will modify the cart  (modify the slice of the redux store)
+    
+then the slice will be updated ,data is added to the slice 
+
+it is not complicated ,it makes our life easier 
+
+the number in the website should be changed 
+we have learn how to write the data 
+
+how to get data from the cart 
+
+for that we use something known as selector
+to read the data from the store ,the selector will give you date over here 
+when we use selector we called as subscribing to the store 
+
+header componet is subscribing to the store 
+if the data inside the store changes .data in the header will automatically change 
+
+how do you subscribe it is using selector
+
+When you click on add button it dispathes an action 
+
+which call the reducer function ,which  will modify the slice of the store and header component is subscribed to the store using the selector 
+
+it will automatically update ,all will happening behind the scene 
+lot of people use redux  
+what happens behind the scene 
+
+when you click on the add button -> it will  dispatch an action ->
+it will call a reducer function -> which update the the slice of the store ->
+
+header component is subscribed to the store using the selectore 
+
+
+
+------------------------------------------------
+- these are the two library we will install 
+
+npm redux toolkit 
+
+npm i @reduxjs/toolkit
+
+
+# Redux toolkit 
+
+ steps
+ -Install @reduxjs/toolkit and  react-redux 
+
+ -Build our  store 
+ -Connect our store to our app (Bridege)
+ -CREATE A slice (Cart Slice )
+ -Dispatch an action 
+ -sELECTOR (READ THE DATA USING SELECTOR)
+
+
+ npm install @reduxjs/toolkit
+ npm install react-redux 
+
+ in utils create appStore js 
+
+ we need to provide the provider to the store 
+how to we provide to the app
+ app.js
+
+to use the store we have to provide the provider in which of the app it is required 
+
+
+
+ import {Provider} from "react-redux";
+ import 
+ return(
+    <Provide store={appStore}>
+    <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
+    <div className="app">
+    <Header/>
+    <Outlet/>
+    <div>
+    </UserContext.Provider>
+    </Provider>
+ );
+ 
+now create the slice 
+
+it will take the configurations 
+

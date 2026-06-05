@@ -78,3 +78,23 @@ dynamic bundling ,lazy loadig
 
 
 
+display flex to  come things side by side
+justify space between to put space between the side by side content
+
+
+tailwind vs code extension 
+
+tailwind css  intellisense
+
+ctrl+spacebar to get the space
+
+
+it will give you superpower 
+you dont have to website again and again 
+it will give suggesttion
+
+This extension will tell you what are you doing 
+
+flex 
+ justify-between
+ flex align-center 
