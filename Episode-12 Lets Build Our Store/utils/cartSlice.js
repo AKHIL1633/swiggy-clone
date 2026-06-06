@@ -10,10 +10,21 @@ import {createSlice} from "@reduxjs/toolkit";
 //             state.items.push(action.payload);
 // },
 // then i want to add the slice to the store 
+
+// cart is the name of the slice 
+//it takes the initial state
+
+// reducer is an object which has action contain it
+// addItem:(state,action)=>{
+//             //mutating the state here 
+
+//             state.items.push(action.payload);
+//         },
+
 const cartSlice=createSlice({
     name:'cart',
     initialState:{
-        items:[]
+        items:["burger","pizza"]
     },
     reducers:{
         addItem:(state,action)=>{
@@ -32,9 +43,18 @@ const cartSlice=createSlice({
     },
 });
 
+
+
+
+//cart slice is the big object which has action and reducer
+//we are taking the action indivudally and exporting it 
+
+
+// here we have exported the actions 
 export const{addItem,removeItem,clearCart}=cartSlice.actions;
 
-// exporting the slice 
+// exporting the slice  here 
+//
 
 export default cartSlice.reducer;
 
@@ -58,4 +78,4 @@ export default cartSlice.reducer;
 
 //how we read the data from the cart 
 // we have to subscribe to the store using the selector 
-//
+

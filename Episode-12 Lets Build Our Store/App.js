@@ -1,4 +1,4 @@
-import React,{lazy,Suspense }  from "react" ;
+import React,{lazy,Suspense,useEffect,useState}  from "react" ;
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from  "./components/Body";
@@ -7,6 +7,12 @@ import {createBrowserRouter,RouterProvider,Outlet} from "react-router-dom";
 // import  About from "./components/About";
 import  Contact  from "./components/Contact";
 import Error from "./components/Error";
+
+import RestaurantMenu  from "./components/RestaturantMenu";
+import UserContext from "./utils/UserContext";
+import appStore from "./utils/appStore";
+import {Provider} from "react-redux";
+import Cart from "./components/Cart";
 // import Grocery from "./components/Grocery";
 
 //outlet is a component below header you create it ,whenever there is a change in the path the outlet will be filled according to the path
@@ -62,17 +68,93 @@ import Error from "./components/Error";
 const Grocery=lazy(() => import("./components/Grocery"));
 const About=lazy(() =>import ("./components/About"));
 const AppLayout=() =>{
+  const [userName,setUserName]=useState();
+  // authentication 
+
+  useEffect(()=> {
+    // Make a Api call and send username and password
+    const data={
+      name:"Akshay Saini",
+
+    };
+    setUserName(data.name);
+  },[])
+
+  // i have got my context 
+  // to pass new information to the app we use 
+  // we will use usercontextProvider  that is provided by Rect
+  //it will warp this whole app inside the ContextProvide
+  //the component will not be using the default value
+  //they will use this value 
+  //in all the cart i have this value
+  // i am overriding the userContext 
+  // that is why loggedinuser is Akshay Saini
+
+  // return (
+  // <div className="app">
+  //   <userContext.Provider value=({loggedInUser:userName})>
+  //   <Header/>
+  //   </UserContext.Provider>
+  //   </outlet>
+  //   </div>
+  // )
+
+  // here the header will have the new logged in value and rest will have 
+  // default value
+  //context is the global space which i can provide small portion of the app
+  // or the whole portion of the app
+  //I can create the multiple context
+
+  // i can overrider where i want it 
+
+  // Generally want you do is you want to access something
+  // all across your app
+  //i will provide provider in the app
+  // the whole components can access in it
+
+// can we have nested provider
+// is it correct or not
+// header will use elon musk rest as akshay saini
+
+// return(
+//   // Default
+//   <UserContext.Provider value={{loggedInUser:userName}}>
+//     {/* Akshay Saini */}
+
+//     <div className="app">
+//       <UserContext.Provider value={({loggedInUser:"Elon Musk"})}>
+//         {/* Elon mUsk */}
+//         <Header/>
+//       </UserContext.Provider>
+//       <Outlet/>
+//     </div>
+//   </UserContext.Provider>
+
+// // it depends on were you provides the provider
+
+
+// )
+
+
+
+
+
+
   return (
+    <Provider store={appStore}>
+    <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
     <div className="app">
     <Header/>
     <Outlet/>
     </div>
+    </UserContext.Provider>
+    </Provider>
   )
 }
 // Some information that will tell the browserRouter  that what will happen in specific route 
 //page is nothing but a composition of component 
 // about us is also a component 
-const appRouter=createBrowserRouter([
+ const appRouter=createBrowserRouter([
   {
   path:"/",
   element:<AppLayout/>,
@@ -103,6 +185,10 @@ const appRouter=createBrowserRouter([
   {
     path:"/restaurants/:resId",
     element:<RestaurantMenu/>
+  },
+  {
+    path: "/cart",
+    element:<cart/>
   }
 
   ],
@@ -111,7 +197,7 @@ const appRouter=createBrowserRouter([
 ]);
 const root=ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(<RouterProvider router = {appRouter}/>);
+root.render(<RouterProvider router = {appRouter}/>); 
 
 // const appRouter=createBrowserRouter([
 //   {

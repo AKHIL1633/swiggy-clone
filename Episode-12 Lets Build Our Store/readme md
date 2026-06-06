@@ -1,4 +1,9 @@
 Here we can store how we can manage state ,data of our application using redux
+Redux is state management  tool
+Application becomes easier to dubug ,when we use it 
+
+now with the modern development ,it has become easy to do it 
+
 
 Redux work in data layer 
 data layer and ui layer works in sink
@@ -75,9 +80,10 @@ is intended to be the standard way to write Redux logic
 
 What is the difference between the two vanilla redux and redux toolkit
 
+why we use redux tool kit
 
 Redux was very complicated ,
-Configuring a Redux store is too complicated 
+a)Configuring a Redux store is too complicated 
 
 b) I have to add a lot of packages to get Redux to do anything useful
 
@@ -96,7 +102,7 @@ then writing code will be very easy for you
 
 
 Let us build something known as cart 
-if iclick on the add button it should inside the cart item 
+if i click on the add button it should inside the cart item 
 
 
 in the cart it will increase to one 
@@ -128,7 +134,7 @@ Redux store - big object kept on the global central page
 
 redux store -- any componet can access it 
 we will keep most of the major data 
-it is good to keep the wholething
+it is good to keep the whole thing
 it is compleely fine 
 redux store has slices 
 
@@ -150,8 +156,8 @@ when i click on the add button
 how it will go to the cart slice 
 you cant directly modify the cart slice 
 
-i have to dispatch and action 
-when you clicl on the add button 
+i have to dispatch an action 
+when you click on the add button 
 it will dispatch an action --> it calls a function this function will modify the cart 
 the function internally modify the cart slice 
 
@@ -229,7 +235,10 @@ how to we provide to the app
 
 to use the store we have to provide the provider in which of the app it is required 
 
+to create we will use configure store 
+it will comes from the redux toolkit
 
+we will add slices inside it
 
  import {Provider} from "react-redux";
  import 
@@ -247,4 +256,145 @@ to use the store we have to provide the provider in which of the app it is requi
 now create the slice 
 
 it will take the configurations 
+
+we need to provide the store to the application 
+We have framed the whole code  inside the Provider
+
+you can provide the store to the small portion as well
+
+import {Provider} from "react-redux"
+
+<!-- return (
+    <Provider store={appStore}>
+    <UserContext.Provider value={{loggedInUser:userName,setUserName}}>
+    <div className="app">
+    <Header/>
+    <Outlet/>
+    </div>
+    </UserContext.Provider>
+    </Provider>
+  )
+} -->
+<!-- const appRouter=createBrowserRouter([
+  {
+  path:"/",
+  element:<AppLayout/>,
+  children:[
+    {
+      path:"/",
+      element:<Body/>,
+
+    },
+    {
+    path:"/about",
+    element:(
+    <Suspense fallback={<h1>Loading ... </h1>}>
+      <About/>
+      </Suspense>),
+    },
+    {
+    path:"/contact",
+    element:<Contact/>,
+    },
+   {
+    path:"/grocery",
+    element:(
+    <Suspense fallback={<h1>Loading ... </h1>}>
+      <Grocery/>
+      </Suspense>),
+  },
+  {
+    path:"/restaurants/:resId",
+    element:<RestaurantMenu/>
+  }
+
+  ],
+  errorElement:<Error/>,
+  }
+]);
+const root=ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(<RouterProvider router = {appRouter}/>); -->
+
+
+
+creating slice in inside the redux store 
+action is a kind of api to communicate with the redux store 
+ex action are addItem
+
+reducer is a function which  will modify the state 
+as it access to the initial state and action
+
+
+const cartSlice=createSlice({
+    name:'cart',
+    initialState:{
+        items:[]
+    },
+    reducers:{
+        addItem:(state,action)=>{
+            //mutating the state here 
+
+            state.items.push(action.payload);
+        },
+        removeItem:(state)=>{
+            state.items.pop();
+        },
+        clearCart: (state)=> {
+            state.items.length=0; // []
+            // state []
+        },
+        
+    },
+});
+
+// a selector is nothing but a hook inside the react
+
+// learn the differnce between it
+
+//onClick ={handleAddItem}
+//onClick={()=>handleAddItem(item)}
+//onClick={handleAddItem(item)}
+
+one interview question :
+
+whenever you are doing the selector ,make sure you have  subscribed to the score
+
+
+app strore is a combination of reducer 
+use Selector very carefully 
+reduce and reducers as well
+
+
+in vanilla redux
+there we get the warning "Dont Mutate state"
+right now i am directly modifying the state 
+it is impure function 
+earlier we use to copy of the state variable
+and create a new state ,i will modify the new state 
+this is how we do earlier 
+// returning was mandatory
+
+addItem:(state,action) =>{
+   const newState=[...state];
+   newState.items.pus(action.payload);
+   return newState
+
+}
+
+// in new want we have to mutate the state
+// Redux Toolkit
+// state.items.push(action.payload);
+//in the new it is mandatory
+//Redux does not force to do it 
+
+//if you are muating thing here 
+// what the redux is doing 
+// i have to just mutate the state
+// behind the scene it is doing the vanilla work
+// it makes use of immer
+
+// it is important to learn immutable object 
+
+
 

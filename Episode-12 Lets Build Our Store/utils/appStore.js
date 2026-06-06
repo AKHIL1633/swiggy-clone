@@ -11,6 +11,8 @@ const appStore =configureStore({
 
 export default appStore;
 
+// reducer as app can have only one reducer 
+
 // if you want to modify the store ,it will also have reducer
 //each slice will have it owns reducer 
 //app will also has the reducer

@@ -1,3 +1,7 @@
+React and Redux are differnt libraries
+Zustand also used for state management lots of user are using it 
+
+
 some of the restaturant has promoted label 
 this is the freature 
 we will take the existing card 
