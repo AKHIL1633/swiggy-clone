@@ -16,6 +16,38 @@ in jsx comment should be written as
 
 {/* */}
 
+react Developer tools in chrome
+-- in console 
+-- we will two more things 
+-- Components 
+-- Profiler 
+
+
+--it will show all the components 
+--if any click on any components it will show the data layer
+--it will show the virtual dom of the ui
+
+
+on the right hand side it will show the props which it has recived 
+
+-- profiler (it will record the things what you do in the react application )
+
+it is recording all our action 
+all the action we are doing (what i was doing )
+
+flamegraph (colourful are the one which are affected by our action)
+
+
+-ranked
+--timeline
+
+this tool will help you 
+try to use as much as you can 
+we need all the accordian has different show items 
+
+----------------------------------
+
+
 
 error in the console
 
@@ -98,3 +130,14 @@ This extension will tell you what are you doing
 flex 
  justify-between
  flex align-center 
+
+
+ --------------------------------------------------
+
+ lifting the state up in react 
+
+lifting State up
+try to read the example ,it wil explain the example of accordian
+
+
+
