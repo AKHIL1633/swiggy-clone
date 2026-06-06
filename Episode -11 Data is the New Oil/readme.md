@@ -160,7 +160,7 @@ useContext
 
 // Suppose about.js is a classed based component
 
-import User from "./User";
+<!-- import User from "./User";
 import UserClass from "./UserClass";
 import {Component} from "react";
 import UserContext from "../utils/UserContext";
@@ -199,7 +199,7 @@ return (
   </div>
 );
 }
-}
+} -->
 export default About;
 // both are the way to consume the context 
 
@@ -229,4 +229,23 @@ const AppLayout =() => {
 
 in the js of network of fetch.xr
 we will get the details
+
+// we can do the same thing using redux as well
+
+// What is the difference between 
+//context vs redux(Central store you can access from anywhere  )
+// redux does not come from react
+// it is an external library
+
+// small,medum appilication 
+//they dont need it 
+
+// you can build large application using
+context
+
+//redux is scalable
+// we can create ui,them context 
+//we can build large scale application 
+
+
 
