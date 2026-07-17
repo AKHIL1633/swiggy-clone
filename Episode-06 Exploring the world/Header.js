@@ -1,12 +1,10 @@
-// // Actually like the component name
-
-
 
 // import { LOGO_URL } from "../utils/constant";
 // const Header = () => {
-//   // local variable
-//   // on click of the button we should chain the login button to the log out button 
-//   let btnName="Login";
+
+// local variable
+// on click of the button we should chain the login button to the log out button 
+//  let btnName="Login";
 //   return (
 //     <div className="header">
 //       <div className="logo-container">
@@ -17,19 +15,19 @@
 //         <li>Home</li>
 //         <li>About Us</li>
 //         <li>Contact us </li>
-//         <li>Card</li>
+//         <li>Cart</li>
 
 //      login button  we need to creat a local variable btnName="Login"
- //      it is not changing
+//      it is not changing
 
 
 //         <button 
 //         className="login" 
-//         onClick={()=>{
-//           btnName ="Logout"
+//         onClick={()=>{ 
+//           btnName ="Logout";
 //           console.log(btnName);
 //         }}
-//         >
+//         />
 //         {btnName}
 //         </button>
 
@@ -41,15 +39,15 @@
 
 // export default Header;
 
-// //ui does got updated  that is why javascript does not work that why we used state variable 
-//here no way for the react ot track  in the above example 
+// ui doesnt  got updated  that is why javascript does not work that why we used state variable 
+//  here no way for the react ot track  in the above example 
 
  
-
+//----------------------------------------------------------------------------------------------
 // use of state variable 
 // it is rendering the whole header component 
 
-//what will happen ish react will render this component again 
+// what will happen ish react will render this component again 
 
 
 // Actually like the component name
@@ -58,11 +56,8 @@
 // import { useState } from "react";
 
 // const Header =()=>{
-//   // local variable
+// 
 //   // on click of the button we should chain the login button to the log out button
-
-//   // let btnName="Login";
-//   // there is no way for react to track 
 
 //   const[btnNameReact,setBtnNameReact]=useState("Login");
 //   return (
@@ -97,9 +92,10 @@
 
 
 /// login and logout both toggle changes on  clicking
+// in the let variable ,react couldnt keep track of it ,but now it will keep the track of it 
+//
+//----------------------------------------------------------------------------------------------------------------
 
-
-// Actually like the component name
 
 // import { LOGO_URL } from "../utils/constant";
 // import { useState } from "react";
@@ -157,3 +153,15 @@
 // };
 
 // export default Header;
+
+
+
+// what do you mean by rendering of the component ?
+
+
+// it will called the header componet again with the updated value .as React is keeping the track of everything 
+
+
+// how the const value got updated ??
+
+
