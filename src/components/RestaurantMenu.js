@@ -1,88 +1,144 @@
-import { useEffect } from "react";
 import Shimmer from "./Shimmer";
-import {useParams} from "react-router-dom";
-import  { MENU_API } from "../utils/constant";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { CON_URL } from "../utils/constant";
+import { addItem, removeItem, clearCart, setRestaurantId } from "../utils/cartSlice";
 
-// fetching the data and display the data in the ui 
-// it should nt worry fetching the day 
-// we had a use parms hook give us the res id we dont what is the code was written besides it
-
-// creating custom hook is not a compilsory but it will make our code more readable and modular
 const RestaurantMenu = () => {
-//   useEffect(() => {
-//     fetchMenu();
-//   }, []);
-// const [restInfo,setResInfo]=useState(null);
+  const { resId } = useParams();
+  const resInfo = useRestaurantMenu(resId);
+  const dispatch = useDispatch();
+  const cartRestaurantId = useSelector((store) => store.cart.restaurantId);
+  const cartItems = useSelector((store) => store.cart.items);
 
-// parmas is the id with resid
-// const params=useParams();
-// console.log(params);
+  if (resInfo === null) return <Shimmer />;
 
-const{resId}=useParams();
-console.log(params);
+  const handleAddItem = (item) => {
+    if (cartRestaurantId && cartRestaurantId !== resId) {
+      const confirmSwitch = window.confirm(
+        "Your cart has items from another restaurant. Adding this item will clear your cart. Continue?"
+      );
+      if (!confirmSwitch) return;
+      dispatch(clearCart());
+    }
+    dispatch(setRestaurantId(resId));
+    dispatch(addItem(item));
+  };
 
- 
-//  const fetchMenu = async () => {
-//   try {
-//     const data = await fetch(
-//       "https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=22.7169967&lng=75.86830739999999&restaurantId=354078&catalog_qa=undefined&submitAction=ENTER",
-//       {
-//         headers: {
-//           "origin": "https://www.swiggy.com",
-//           "x-requested-with": "XMLHttpRequest",
-//         },
-//       }
-//     );
-//     const json = await data.json();
-//     console.log(json);
-//   } catch (err) {
-//     console.log("Error:", err.message);
-//   }
-// };
-// it will give res.info of the restaurant 
+  const cards = resInfo?.cards || [];
 
-// const fetchMenu=async () =>{
-//     const data=await fetch (MENU_API + resId);
-//     const json =await data.json();
+  const {
+    name,
+    cuisines,
+    costForTwoMessage,
+    avgRating,
+    totalRatingsString,
+    areaName,
+    locality,
+    sla,
+    cloudinaryImageId,
+  } = cards.find((c) => c?.card?.card?.info)?.card?.card?.info || {};
 
-//     console.log(json);
-//     setResInfo(json.data);
-//     // to store the data we need to used state variable 
+  const offers =
+    cards.find((c) => c?.card?.card?.id === "offerCollectionWidget")?.card
+      ?.card?.gridElements?.infoWithStyle?.offers || [];
 
-// };
-// RestaurantMenu is a  custom hook
-//custom hook (RestaurantMenu),we will create the hook which will fetch the data and give it to the restaturant menu
-//for that particular restaturant i,it will fetch that info 
-//this hook will do black magic ,it means how we are fetching the data 
-//hook are nothing but helper functions 
-
-const resInfo=useRestaurantMenu(resId);
-
-if(resInfo === null)<Shimmer/>
-// it is better to use graph ql
-// swiggy backend giving us tomes of data ,load only which is required in your app
-const {name,cuisines,costForTwoMessages} =resInfo?.cards[0]?.card?.card?.info;
-const{itemsCards}=resInfo?.card[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  const itemCards =
+    cards
+      .find((c) => c?.groupedCard)
+      ?.groupedCard?.cardGroupMap?.REGULAR?.cards?.find(
+        (c) => c?.card?.card?.itemCards
+      )?.card?.card?.itemCards || [];
 
   return (
     <div className="menu">
-        //Name of the Restaurant
-      <h1>{name}</h1>
-      <p>
-        {cuisines.join(",")}-{costForTwoMessages}
+      <div className="menu-hero">
+        <img className="menu-hero-img" src={CON_URL + cloudinaryImageId} alt={name} />
+      </div>
+
+      <h1 className="menu-title">{name}</h1>
+      <div className="menu-subinfo">
+        <span>⭐ {avgRating} ({totalRatingsString})</span>
+        <span>{costForTwoMessage}</span>
+      </div>
+      <p className="menu-cuisines">{cuisines?.join(", ")}</p>
+      <p className="menu-locality">
+        {areaName}
+        {locality ? `, ${locality}` : ""}
+        {sla?.slaString ? ` · ${sla.slaString}` : ""}
       </p>
-      <h2>Menu</h2>
-      <ul>
-        {itemCards.map((item) => (
-         <li key={item.card.info.id}>{item.card.info.name} - {"Rs."}
-         {item.card.info.price / 100 || item.card.info.defaultPrice / 100}</li>
-        ))}
+
+      {offers.length > 0 && (
+        <>
+          <h3 className="menu-section-title">Deals for you</h3>
+          <div className="menu-offers">
+            {offers.map((offer, i) => (
+              <div className="offer-card" key={i}>
+                <p className="offer-header">{offer.info.header}</p>
+                <p className="offer-desc">{offer.info.description}</p>
+                {offer.info.couponCode && (
+                  <p className="offer-code">{offer.info.couponCode}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      <h2 className="menu-section-title">Recommended ({itemCards.length})</h2>
+      <ul className="menu-items">
+        {itemCards.map((item) => {
+          const info = item.card.info;
+          const price = (info.finalPrice ?? info.price ?? info.defaultPrice ?? 0) / 100;
+          const isVeg =
+            info.itemAttribute?.vegClassifier === "VEG" || info.isVeg === 1;
+          const quantity = cartItems.filter((i) => i.id === info.id).length;
+          return (
+            <li className="menu-item" key={info.id}>
+              <div className="menu-item-left">
+                <span className={`veg-icon ${isVeg ? "veg" : "non-veg"}`}></span>
+                <p className="menu-item-name">{info.name}</p>
+                <p className="menu-item-price">₹{price}</p>
+                {info.ratings?.aggregatedRating?.rating && (
+                  <p className="menu-item-rating">
+                    ★ {info.ratings.aggregatedRating.rating} (
+                    {info.ratings.aggregatedRating.ratingCount})
+                  </p>
+                )}
+                {info.description && (
+                  <p className="menu-item-desc">{info.description}</p>
+                )}
+              </div>
+              {info.imageId && (
+                <div className="menu-item-right">
+                  <img className="menu-item-img" src={CON_URL + info.imageId} alt={info.name} />
+                  {quantity > 0 ? (
+                    <div className="stepper">
+                      <button
+                        className="stepper-btn"
+                        onClick={() => dispatch(removeItem(info.id))}
+                      >
+                        −
+                      </button>
+                      <span className="stepper-count">{quantity}</span>
+                      <button className="stepper-btn" onClick={() => handleAddItem(info)}>
+                        +
+                      </button>
+                    </div>
+                  ) : (
+                    <button className="add-btn" onClick={() => handleAddItem(info)}>
+                      ADD
+                    </button>
+                  )}
+                </div>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
 };
 
 export default RestaurantMenu;
-
-// the only difference  is the restaturant id only

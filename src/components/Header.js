@@ -3,6 +3,7 @@
 import { LOGO_URL } from "../utils/constant";
 import { useState,useEffect } from "react";
 import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
 import useOnlineStatus from "../utils/useOnlineStatus";
 // Link component works exactly the same as the anchor tag 
 // anchor tag we have href  <a href="/about">About us </a>
@@ -53,6 +54,7 @@ const Header =()=>{
   //  });
   const[btnNameReact,setBtnNameReact]=useState("Login");
   const onlineStatus=useOnlineStatus();
+  const cartItems=useSelector((store)=>store.cart.items);
   console.log("Header render ");
   return (
     <div className="header">
@@ -74,7 +76,9 @@ const Header =()=>{
         <li>
           <Link to="/grocery">Grocery</Link> 
           </li>
-        <li>Cart</li>
+        <li>
+          <Link to="/cart">Cart ({cartItems.length})</Link>
+        </li>
 
         <button 
         className="login" 

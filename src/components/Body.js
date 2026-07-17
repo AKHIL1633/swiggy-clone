@@ -13,14 +13,24 @@ const Body = () => {
 
   }, []);
   const fetchData = async () => {
-    const data = await fetch("https://cors-anywhere.herokuapp.com/https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.7195687&lng=75.8577258&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const data = await fetch("http://localhost:5000/api/restaurants?lat=21.2611169&lng=81.5993951");
     const json = await data.json();
-    console.log(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
+    const cards = json?.data?.cards || [];
+    const seenIds = new Set();
+    const restaurants = [];
+    cards.forEach((c) => {
+      const sectionRestaurants = c?.card?.card?.gridElements?.infoWithStyle?.restaurants || [];
+      sectionRestaurants.forEach((r) => {
+        if (!seenIds.has(r.info.id)) {
+          seenIds.add(r.info.id);
+          restaurants.push(r);
+        }
+      });
+    });
 
-    const restaurants = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    setListOfRestaurants(restaurants || []);
-    setfilteredRestaurant(restaurants || []);
+    setListOfRestaurants(restaurants);
+    setfilteredRestaurant(restaurants);
   };
   const onlineStatus=useOnlineStatus();
   if(onlineStatus ===false)return <h1>Looks like you are offline !! Please check your internet connection</h1>
@@ -67,7 +77,7 @@ const Body = () => {
         <div className="res-container">
           {
             filteredRestaurant.map((restaurant) => (
-              <Link key={restaurant.info.id} to={"/restaurants"+ restaurant.info.id}><RestaurantCard
+              <Link key={restaurant.info.id} to={"/restaurants/"+ restaurant.info.id}><RestaurantCard
                 key={restaurant.info.id}
                 resData={restaurant}
               /></Link>

@@ -1,33 +1,19 @@
-//it will take resid and job is to return the restaurant information 
+import { useState, useEffect } from "react";
 
-import {useEffect } from "react";
-//it jobs is to restaurant information 
+const useRestaurantMenu = (resId) => {
+  const [resInfo, setResInfo] = useState(null);
 
-const useRestaurantMenu = (resId)  => {
-     
-    const [resInfo,setResInfo]=useState(null);
-    
-    //fetchdata
-    // we will fetch inside the same way we used there 
-    useEffect(()=>{
-        fetchData();
-    },[]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const fetchData=async()=>{
-        const data=await fetch(MENU_API +resId);
+  const fetchData = async () => {
+    const data = await fetch(`http://localhost:5000/api/menu?resId=${resId}`);
+    const json = await data.json();
+    setResInfo(json.data);
+  };
 
-        const json=await data.json();
-
-        setResInfo(json.data);
-    };
-    //how we fetch the data inside the component 
-    // if there any issue with fetching the data we have to go to the useRestaurantMenu
-    //if there any issue with fetching the ui display we have to go to the RestaurantMenu
-
-
-
-    return resInfo;
-    // resinfo is a local variable 
+  return resInfo;
 };
 
-export default  useRestaurantMenu;
+export default useRestaurantMenu;

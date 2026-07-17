@@ -76,3 +76,233 @@
     padding:10px;
     border:1px solid black;
 }
+
+.menu {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.menu-hero {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+.menu-hero-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+}
+.menu-title {
+    font-size: 28px;
+    margin: 8px 0 4px;
+}
+.menu-subinfo {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-size: 15px;
+    color: #3d3d3d;
+    margin-bottom: 4px;
+}
+.menu-cuisines, .menu-locality {
+    color: #686b78;
+    font-size: 14px;
+    margin: 2px 0;
+}
+.menu-section-title {
+    margin-top: 24px;
+    margin-bottom: 12px;
+    font-size: 20px;
+    border-bottom: 1px solid #e9e9eb;
+    padding-bottom: 8px;
+}
+
+.menu-offers {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+.offer-card {
+    min-width: 200px;
+    border: 1px dashed #d0d0d0;
+    border-radius: 8px;
+    padding: 12px;
+    background: #fff8f6;
+    flex-shrink: 0;
+}
+.offer-header {
+    font-weight: 700;
+    color: #e46d47;
+    margin: 0 0 4px;
+}
+.offer-desc {
+    font-size: 13px;
+    color: #3d3d3d;
+    margin: 0 0 4px;
+}
+.offer-code {
+    font-size: 12px;
+    font-weight: 600;
+    color: #02733e;
+    margin: 0;
+}
+
+.menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid #e9e9eb;
+}
+.menu-item-left {
+    flex: 1;
+}
+.veg-icon {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1.5px solid;
+    margin-bottom: 6px;
+}
+.veg-icon.veg {
+    border-color: #0f8a0f;
+}
+.veg-icon.veg::after {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: #0f8a0f;
+    border-radius: 50%;
+    margin: 2.5px;
+}
+.veg-icon.non-veg {
+    border-color: #b1560f;
+}
+.veg-icon.non-veg::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 7px solid #b1560f;
+    margin: 1px 3px;
+}
+.menu-item-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 4px 0;
+}
+.menu-item-price {
+    font-size: 14px;
+    margin: 2px 0;
+}
+.menu-item-rating {
+    font-size: 12px;
+    color: #3d3d3d;
+    margin: 2px 0;
+}
+.menu-item-desc {
+    font-size: 13px;
+    color: #93959f;
+    margin: 6px 0 0;
+    max-width: 480px;
+}
+.menu-item-right {
+    position: relative;
+    width: 140px;
+    flex-shrink: 0;
+}
+.menu-item-img {
+    width: 140px;
+    height: 104px;
+    border-radius: 8px;
+    object-fit: cover;
+    display: block;
+}
+.cart {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e9e9eb;
+    padding-bottom: 12px;
+}
+.clear-cart-btn {
+    cursor: pointer;
+    padding: 8px 16px;
+    border: 1px solid #e46d47;
+    color: #e46d47;
+    background: #fff;
+    border-radius: 6px;
+}
+.cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+}
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #e9e9eb;
+}
+.add-btn {
+    position: absolute;
+    left: 50%;
+    bottom: -14px;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #3d7d3d;
+    border: 1px solid #e9e9eb;
+    border-radius: 8px;
+    padding: 6px 24px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+.stepper {
+    position: absolute;
+    left: 50%;
+    bottom: -14px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    color: #3d7d3d;
+    border: 1px solid #e9e9eb;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+.stepper-btn {
+    background: none;
+    border: none;
+    color: #3d7d3d;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+.stepper-count {
+    min-width: 12px;
+    text-align: center;
+}
