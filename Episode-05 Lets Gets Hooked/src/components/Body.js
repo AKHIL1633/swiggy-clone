@@ -5,7 +5,14 @@ const Body =() =>{
   return (
     <div className="body">
       <div className="search">Search</div>
-      <div className="res-container">
+      <div className="filter">
+        <button className="filter-btn"
+         onClick={() =>{console.log("Button clicked")}}
+        //  onMouseover={() =>{console.log("Button clicked")}}
+        >
+          Top Rated Restaurants
+           </button>
+      </div>
       <div className="res-container">
        {
        resObj.map((restaurant) => (
@@ -17,13 +24,9 @@ const Body =() =>{
      }
     </div>
       </div>
-    </div>
   )
 };
 
 export default Body;
 
 
-
-
-import RestaurantCard from "./RestaurantCard";

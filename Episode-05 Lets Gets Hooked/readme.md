@@ -1,7 +1,48 @@
 it is not good practice to put all files in the single code 
 We will break th  code to restructure it 
 
+To understand the react folder structure 
+you can search in google 
+react folder structure
+
+a) all the common folder 
+
+  common/
+  feed/ 
+  profile/
+
+b)Grouping by file type 
+
+   api /
+   components /
+
+Avoid too much nesting 
+
+
+We are  using actual live data for our app 
+
+it is possible to do with normal html also 
+
+we will see the things  with the live  Swiggy api 
+
+
+Why react ?
+
+it makes you write less code 
+large scalable production app building is very easy 
+
+Here we see React Hooks 
+
+before moving into it , we need to clean our app,we wrote everything into a single file 
+it is not recommended  to maintain large files 
+the best practice is to make sepearte file for seperate components 
+
+All the main code of the react is put under the src folder 
+
+keep the App.js under the src folder 
+
 All the main code is put under the src folder ( a kind of source code )
+
 I will put  the app.js folder in the src folder now i have to change the path of it index.html
 
 It is better to make sepearte file to each component ,
@@ -13,16 +54,27 @@ like Search feature
 
 
 root folder structure 
+
 in the documentation it is does not say what does it matter 
+
+the file name of components should be matched with the component name only
+
 
 to learn about the foleder structure 
 ## go to the react folder structure 
 
-.jsx it means react 
+.jsx it means react  (it will give cool logo)
+
 you can use .js extension 
 
 
-.tsx means angular 
+.tsx means angular  (tsx is for typescript)
+
+
+what is the good way ?
+
+i personally like .js extension 
+
 
 Two types of Export /Import 
 - Default EXPORT/Import
@@ -64,11 +116,15 @@ import {Component} from "path";
 
 
 in uber Each component must be as small and clean 
+
 around 100 lines of code 
+
 Dont put more than 100 ,it is advisable
 
 now we will make our interactive ,we will keep learning basic concepts 
+
 when i click on the button it will show top rated restaturant ,it is a kind of filter
+
 i want restautrant which have rating >4
 
 here we have to write the filter logic here 
@@ -142,7 +198,7 @@ export default Body;
 
 
 
-//Wrote the logic of filtering but Ui is not getting updated 
+// Wrote the logic of filtering but Ui is not getting updated 
 
 
 
@@ -194,18 +250,17 @@ const Body =() =>{
       <div className="filter">
         <button className="filter-btn"
         
-        onClick={()=>{ 
+          onClick={()=>{ 
           //Filter logic here 
 
           ListOfRestaurants=ListOfRestaurants.filter(
             (res)=> res.info.avgRating>4
           );
           console.log(ListOfRestaurants);
-        }}
+          }}
         
         >Top rated Restaturant</button>
       </div>
-      <div className="res-container">
       <div className="res-container">
        {
         ListOfRestaurants.map((restaurant) => (
@@ -227,39 +282,55 @@ export default Body; -->
 in the earlier example ui is not updated 
 
 ui layer and data layer are not working together 
-//here react comes into the picture 
-//here listOfRestaurants is normal   variable 
 
-// React comes with a concept of State Variable -super powerful variable
-//For that we use React Hooks 
-// What is Hooks ?
-// A react Hook a normal javascript function ,which is given to us by react 
-// there are multiple such function in react 
-// they are normal js function ,written y javascript developer 
+here react comes into the picture 
+
+here listOfRestaurants is normal variable 
+
+React comes with a concept of State Variable -super powerful variable
+
+For that we use React Hooks 
+
+What is Hooks ?
+
+
+A react Hook a normal javascript function ,which is given to us by react 
+
+there are multiple such function in react 
+
+they are normal js function ,written y javascript developer 
 
 we have to import this utility  function
 
-<!-- // React is effificent in React dom manipulation 
-//Ui and data layer should work together (updating the dom manipulation)
-//There is a concept of virtual dom 
+React is effificent in React dom manipulation 
+
+Ui and data layer should work together (updating the dom manipulation)
+
+There is a concept of virtual dom 
 
 
-// React Hooks
-(Normal Js function 
-)
+## React Hooks
+
+(Normal Js function )
+
 npm install react we have got  all the utility function 
+
 react hook is normal javascript function
+
 it is a utility function
 
 it maintain the state of the component
 
 There are two important function 
--->UseState()-super powerful state variable it gives ,you have import this as named import 
--->useEffect()
+
+UseState()-super powerful state variable it gives ,you have import this as named import 
+
+useEffect()
 
 This is used to generate super powerful state variable
 
 Example of filtering 
+
 Whenever a state variable react render the component
 
 import RestaurantCard from "./RestaurantCard";    
@@ -280,15 +351,24 @@ LOCAL STATE VARIABLE SCOPE IS INSIDE THE COMPONENT
 Keeps the layer sink with the ui 
 
 
+earlier of body.js
+
 import RestaurantCard from "./RestaurantCard";    
 import {useState} from "react";
-const Body =() =>{
+const Body =() => {
 
-  // whatever the value we will pass in the useState will become the default of const here 
+  // whatever the value we will pass in the useState will become the default of const here
+
+  // you will receive the state variable using the array  
+
   // const [listOfRestaurants]=useState([null]);  local state variable
+
   // let me know how to modify this variable,you have to modify the list of restaturants using setListOfRestaturants 
+
   //you can name this whatever you wish to 
+
   // you can put res ,then setres 
+
 
   const [listOfRestaurants,setListOfRestaurants]=useState([
     {
@@ -370,7 +450,7 @@ const Body =() =>{
 
   Example 
   // lets list =[]
-  // lsit=["Abc"];
+  // list=["Abc"];
   // list.push
   ("Abc");
 
@@ -385,15 +465,22 @@ const Body =() =>{
 //it keeps the ui layer sinks with the di layer
 
 
-// React uses Reconcilitation Algorithm
+## React uses Reconcilitation Algorithm
+
 //it is also knows as React Fibre 
+
 We have a dom(it is like a tree)
 
 restaturant container has 7 restaturant cards ,my ui changes from filtering to 3 filtered card 
+
 react create the virtual dom
-actual dom are the <div> <div> it 
-Virtual Dom is a representation of actual dom 
+
+actual dom are the <div> <div> 
+
+Virtual Dom is a representation of actual dom .
+
 Virtual dom are actually those react elements (are nothing but the objects)
+
 it is nothing but the javascript object ,it is nothing but the objects
 
 what is the diff algorithm
@@ -414,7 +501,8 @@ virtual dom  bascillay the tag which you see (nothing but the javascriot objects
 react is constantly checking 
 this is the core job of React 
 
-
+when a state variable update ,react re render the whole component 
+use State is a Local State variable -Super powerful variable 
 
 
 import RestaurantCard from "./RestaturantCard";
@@ -438,9 +526,8 @@ const Body =() =>{
           setListOfRestaurants(filteredList);
         }}
         
-        >Top rated Restaturant</button>
+        >Top rated Restaturant</button>                   
       </div>
-      <div className="res-container">
       <div className="res-container">
        {
         listOfRestaurants.map((restaurant) => (
@@ -511,6 +598,8 @@ console.log(<Body/>)
     </div>
   )
 }; -->
+
+
 How React Treat this Jsx as object
 React Element is an object 
 virtual Dom is nothing but javascricpt object 
