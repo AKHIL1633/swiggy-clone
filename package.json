@@ -1,20 +1,23 @@
 {
-  "name": "namaste",
+  "name": "swiggy-clone",
   "version": "1.0.0",
-  "description": "This is Namaste react By Akshay Saini ",
+  "description": "A React 18 clone of Swiggy's restaurant listing and menu pages, with a Redux Toolkit cart and a live Express proxy for Swiggy's API.",
   "keywords": [
-    "react"
+    "react",
+    "redux-toolkit",
+    "react-router",
+    "swiggy-clone"
   ],
-  "homepage": "https://github.com/AKHIL1633/Namaste_dev#readme",
+  "homepage": "https://github.com/AKHIL1633/swiggy-clone#readme",
   "bugs": {
-    "url": "https://github.com/AKHIL1633/Namaste_dev/issues"
+    "url": "https://github.com/AKHIL1633/swiggy-clone/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AKHIL1633/Namaste_dev.git"
+    "url": "git+https://github.com/AKHIL1633/swiggy-clone.git"
   },
-  "license": "ISC",
-  "author": "Akshay Saini",
+  "license": "MIT",
+  "author": "Akhil P",
   "type": "commonjs",
   "scripts": {
     "start": "parcel index.html",
@@ -29,7 +32,6 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
-    "axios": "^1.13.6",
     "express": "^5.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

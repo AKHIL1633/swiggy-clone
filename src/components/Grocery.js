@@ -1,8 +1,5 @@
-const  Grocery = () => {
-    return (
-    <h1>our grocery online store ,and we have a lot of child components inside
-        this web page
-    </h1>
-    );
+const Grocery = () => {
+  return <h1>Grocery — coming soon</h1>;
 };
-export default Grocery
+
+export default Grocery;

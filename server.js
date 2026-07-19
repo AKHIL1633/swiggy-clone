@@ -2,7 +2,7 @@ const express = require("express");
 const { RESTAURANT_LIST_API, MENU_API } = require("./src/utils/constant");
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
