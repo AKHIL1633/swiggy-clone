@@ -1,11 +1,12 @@
 import {CDN_URL} from "../utils/constants";
 import{useDispatch} from "react-redux";
 import{addItem} from "../utils/cartSlice";
+
 const ItemList=({items}) => {
 
  // when someonce click on tha add item ,i want to dispatch an action
  const dispatch=useDispatch();
-  const handleAddItem=() => {
+  const handleAddItem=(item) => {
    // Dispatch an action 
    // we have export exported some action on slice
    // whatever value i am passing here it will go to the reducer function 

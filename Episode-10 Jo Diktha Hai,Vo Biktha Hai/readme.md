@@ -6,18 +6,21 @@ in this episode we will focus on how we can make our app beautiful
 how many ways we can get css to our application
 
 1)using className we are doing
+
 2)Sass and Scss 
+
 Sass writeing css with super power ,writing css will become little more advanced and easy 
+
 this is the not a recommended 
 this is not used in industry ,not a recommedded way 
 
-3)styled components 
+3)styled components (Lot of companies used it )
 uber uses it to write css for our components 
 you can choose with your react application 
 
-library --
+library  and framework 
 
-material  ui  (this is a way to make our application beautiful)
+-- material  ui  (this is a way to make our application beautiful)
 they gave you export component which are already beautiful 
 you already get prebilled component ,you need to just to import it 
 
@@ -33,7 +36,7 @@ second most popular react ui
 
 
 
-here we will learn taildwind css
+here we will learn tailwind css
 
 
 a)normal css 
@@ -41,7 +44,7 @@ b)Sass
 c)Style components 
 
 
-tailwindcss.com
+## tailwindcss.com
 
 Rapidly build modern application 
 
@@ -59,26 +62,40 @@ let see how to created tailwind with parcel
 
 post css --a tool for transforming css with javascript
 
-npm install -D tailwind postcss 
+
+Let see how to configure the tailwind to the app
 
 
-npx tailwind init
-created yhe configuration for the tailwind
+here we are using Parcel (as our project uses it )
+
+npm install -D tailwind postcss  ( Postcss is a tool for transforming Css with JavaScript)
+
+npx tailwind init   (npx means invoking or executing the tailwind css in it ,it will create the tailwind.config)
+
+
+created the configuration for the tailwind
+
 npx we are executing tailwind css in our reposistory
+
 it created a new file tailwind.config.js
 
-configuration for our tailwind
+## configuration for our tailwind
 
 --- Configure PostCssrc
 --configuration for the postcssrc
 --you have to tell we are using tailwind here 
---parcel will used postcssrcc to unsderstand tailwind
+--parcel will used postcssrcc to understand tailwind
+
+create one file .postcssrc
+and paste these lines over it 
+
 
 {
     "plugins":{
         "tailwindcss":{}
     }
 }
+
 
 go to the root .postcssrc
 
@@ -90,9 +107,13 @@ any file under src has one of this extension
 our project will track 
 
 
+
+slight modification we have to do in tailwind.config.js 
+
+
 /** @type {import('tailwindcss').Config}*/
 module.exports ={
-    content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
+    content: ["./src/**/*.{html,js,ts,jsx,tsx}"],   (tailwind can be html,js,ts,jsx,tsx) (we are telling it)
     theme:{
         extend:{}
     },
@@ -100,7 +121,8 @@ module.exports ={
 }
 
 
----
+-------------------------------------------------------------------
+
 index.css
 
 
@@ -114,6 +136,7 @@ it is a kind of importing tailwind to the css
 our writing this our project is configured to use the tailwind now 
 
 npm start 
+
 everything is broken we have tailwind in our project configure 
 
 how we can customise make our project beautiful  using tailwind
