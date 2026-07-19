@@ -6,6 +6,12 @@ A React 18 clone of Swiggy's restaurant listing and menu pages, built while foll
 Live restaurant and menu data is pulled from Swiggy's public API through a small local
 Express proxy (needed to get around CORS/user-agent restrictions on direct browser calls).
 
+## Screenshots
+
+| Restaurant listing | Restaurant menu |
+| --- | --- |
+| ![Restaurant listing page](screenshots/home.png) | ![Restaurant menu page](screenshots/menu.png) |
+
 ## Features
 
 - Restaurant listing with search and a "top rated" filter
